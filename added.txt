@@ -1,3 +1,4 @@
 added
-//add : 로컬 저장소의 파일들 중 원격에 올릴 것들만 stage하는 단계
-//commit : stage된 파일들을 
+//add : 로컬 저장소의 파일들 중 원격에 올릴 것들만 stage하는 단계(파일들이 바뀔 때마다 add 해줘야함)
+//commit : stage된 파일들을 .git폴더 안에 저장하는 단계
+//push : commit들을 원격 저장소에 올리는 단계
