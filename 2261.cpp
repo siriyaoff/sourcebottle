@@ -3,61 +3,71 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
-typedef pair<int, int> point;
+typedef pair<int, int> p;
 
 int n;
-vector<point> points;
+vector<p> ps;
 
-bool compare(point a, point b){
-	return a.first<=b.first;
-}
-int dist(int a, int b){
-	if(a==b)
-		return 987654321;
-	else
-		return (points[a].first-points[b].first)*(points[a].first-points[b].first)+(points[a].second-points[b].second)*(points[a].second-points[b].second);
-}
 int closest(int s, int e);
+
+bool comparex(p a, p b){
+	return a.first<b.first;
+}
+
+bool comparey(p a, p b){
+	return a.second<b.second;
+}
+
+int dist(p a, p b){
+	int x=a.first-b.first, y=a.second-b.second;
+	return x*x+y*y;
+}
 
 int main()
 {
 	scanf("%d", &n);
 	for(int i=0;i<n;i++){
 		int x, y;
-		scanf("%d", &x);
-		scanf("%d", &y);
-		points.push_back(make_pair(x, y));
+		scanf("%d %d", &x, &y);
+		ps.push_back(make_pair(x, y));
 	}
-	sort(points.begin(), points.end(), compare);
+	sort(ps.begin(), ps.end(), comparex);
 	
 	printf("%d", closest(0, n-1));
 	return 0;
 }
 
 int closest(int s, int e){
-	if(s>e)
-		return 987654321;
 	if(s+1==e)
-		return dist(s, e);
-	int mid=(s+e)/2, l, r, d;//l, r : mindist from l, r
-	l=closest(s, mid);
-	r=closest(mid, e);
-	d=(l<r)?l:r;
-	l=s;
-	r=e;
-	for(int i=mid-1;i>=0;i--)
-		if(dist(i, mid)>d)
-			break;
-	if(--l<0) l=0;
-	for(int i=mid+1;i<n;i++)
-		if(dist(mid, i)>d)
-			break;
-	if(++r==n) r=n-1;
-	for(int i=l;i<r;i++){
-		for(int j=i+1;j<r+1;j++){
-			if(dist(i, j)<d)
-				d=dist(i, j);
+		return dist(ps[s], ps[e]);
+	int mid=(s+e)/2, ldist=987654321, rdist=987654321, curd;
+	if(s<mid) ldist=closest(s, mid);
+	if(mid+1<e) rdist=closest(mid+1, e);
+	curd=(ldist<rdist)?ldist:rdist;
+	
+	vector<p> indAsx;
+	for(int i=s;i<=e;i++){
+		if(mid==i)
+			continue;
+		int xdist=ps[mid].first-ps[i].first;
+		xdist*=xdist;
+		if(xdist<curd) indAsx.push_back(ps[i]);
+	}
+	indAsx.push_back(ps[mid]);
+	if(indAsx.empty())
+		return curd;
+	
+	sort(indAsx.begin(), indAsx.end(), comparey);
+	vector<p> ind;
+	for(int i=0;i<indAsx.size()-1;i++){
+		for(int j=i+1;j<indAsx.size();j++){
+			int ydist=indAsx[i].second-indAsx[j].second;
+			ydist*=ydist;
+			if(ydist>=curd)
+				break;
+			if(dist(indAsx[i], indAsx[j])<curd)
+				curd=dist(indAsx[i], indAsx[j]);
 		}
 	}
-	return d;
+	return curd;
 }
