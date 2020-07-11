@@ -188,3 +188,15 @@ int main()
 		printf("%d %d", T, (int)sol);
 	return 0;
 }
+
+/*
+fatal: Could not read from remote repository.
+ 
+Please make sure you have the correct access rights
+and the repository exists.
+이 에러 어떻게 해결하는지
+git fetch 1324.cpp
+하면 나옴
+remote 연결 다시해도 똑같이 뜸
+목적은 local이랑 remote랑 같게 만드는것(지금은 1324가 local에 없음)
+*/
