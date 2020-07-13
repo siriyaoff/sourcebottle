@@ -153,10 +153,9 @@ int main()
 		else
 			cde[2].push_back(diff/2);
 	}
-	
 	int T=sm;
 	for(int i=0;i<3;i++){
-		for(int j=0;j<cde[i].size();i++){
+		for(int j=0;j<cde[i].size();j++){
 			T+=cde[i][j]*2;
 			if(i==1)
 				continue;
@@ -190,13 +189,12 @@ int main()
 }
 
 /*
-fatal: Could not read from remote repository.
- 
-Please make sure you have the correct access rights
-and the repository exists.
-이 에러 어떻게 해결하는지
-git fetch 1324.cpp
-하면 나옴
-remote 연결 다시해도 똑같이 뜸
-목적은 local이랑 remote랑 같게 만드는것(지금은 1324가 local에 없음)
+26
+16
+1 2 2 1 1 2 1 1 2 2 2 1 2 2 2 2
+16
+2 1 1 1 2 1 2 2 2 2 2 1 2 2 2 1
+
+20 280640559
+
 */
