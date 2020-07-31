@@ -29,3 +29,4 @@ git rebase --continue를 이용해 남은 commit들 다시 적용 가능
 
 git blame [file] : file의 수정 log를 보여줌(commit id, user name, time까지)
 
+PR해보기, rebase까지!
