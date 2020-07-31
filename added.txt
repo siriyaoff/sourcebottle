@@ -2,3 +2,30 @@ added
 //add : 로컬 저장소의 파일들 중 원격에 올릴 것들만 stage하는 단계(파일들이 바뀔 때마다 add 해줘야함)
 //commit : stage된 파일들을 .git폴더 안에 저장하는 단계
 //push : commit들을 원격 저장소에 올리는 단계
+
+
+git clone [storage url] : clone하기(공유 프로젝트를 할 때는 fork해서 만들어진 내 REPO의 주소를 넣음)
+ - 다른 로컬 저장소 안에서 만들면 충돌이 일어날 수 있음
+
+git checkout -b [branch name] : [branch name]의 branch 생성
+ - git status로 branch 확인 가능
+
+내 클론에 로컬 커밋을 push한 후에 원래 repo와 비교해서 PR 요청 가능
+(꼭 다른 branch로만 해야하나 : 그럴듯, 원래 repo 주인만 master에 다른 branch merge후 PR요청 할 수 있고 다른 참여자들은 그냥 다른 브랜치로만 push후 PR해야 프로젝트가 안전하니까)
+
+git merge [branch B] : 현재 branch를 기준으로 B를 합침
+
+upstream : 내가 fork해서 clone을 만들어 개발중인 프로젝트의 원래 repo(=내 clone을 이용해 PR요청을 할 프로젝트)
+git remote set-url upstream [url] (git remote -v를 통해 upstream이 나타난 경우)
+git remote add upstream [url] (나타나지 않은 경우)
+
+git fetch [upstream] [branch a] : upstream에서부터 branch a로 데이터를 가져옴(push와의 차이 : push는 merge를 동반, fetch는 가져와서 저장까지만)
+
+git rebase [upstream/branch a] : branch a의 commit들을 commit이전의 같은 시점의 upstream에 대하여 다시 적용
+
+git rebase -i --root : 최초부터 edit으로 만든 commit까지 적용(git commit --amend 를 이용해 edit한 commit 수정 가능)
+
+git rebase --continue를 이용해 남은 commit들 다시 적용 가능
+
+git blame [file] : file의 수정 log를 보여줌(commit id, user name, time까지)
+
