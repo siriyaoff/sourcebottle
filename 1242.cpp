@@ -1,23 +1,19 @@
 #include<cstdio>
 #include<vector>
-#include<algorithm>
 using namespace std;
 
 int main()
 {
-	int N, K, M;
+	int N, K, M, cnt, t, orgn;
 	scanf("%d %d %d", &N, &K, &M);
-	vector<int> p;
-	for(int i=1;i<=N;i++) p.push_back(i);
-	
-	K--;
-	int pos=0, cur=-1, cnt=0;
-	while(cur!=M){
-		pos=(pos+K)%p.size();
-		cur=p[pos];
-		p.erase(p.begin()+pos);
-		cnt++;
+	orgn=N;
+	t=(K%N==0)?N:K%N;
+	for(cnt=0;cnt<orgn;cnt++){
+		if(t==M) break;
+		M=(M>t)?M-t:M-t+N;
+		N--;
+		t=(K%N==0)?N:K%N;
 	}
-	printf("%d", cnt);
+	printf("%d", cnt+1);
 	return 0;
 }
