@@ -75,7 +75,7 @@ int main()
 	for(int i=0;i<bstrs.size();i++){
 		A=(A*dp[bstrs[i]])%MOD;
 		cnt+=bstrs[i];
-		A=(A*power(facto[bstrs[i]], MOD-2))%MOD;
+		A=(A*finv[bstrs[i]])%MOD;
 	}
 	B=facto[cnt];
 	A=(A*B)%MOD;
