@@ -54,7 +54,7 @@ int main() {
 //         if (vis[nv] == 0)
 //             tpsort(adj, vis, nv, tv);
 //     }
-//     tv.insert(tv.begin(), v);
+//     tv.push_back(v);
 //     return 0;
 // }
 
@@ -75,6 +75,7 @@ int main() {
 //             tpsort(adj, vis, i, ans);
 //         }
 //     }
+//     reverse(ans.begin(), ans.end());
 //     for (int i = 0; i < ans.size(); i++)
 //         cout << ans[i] + 1 << ' ';
 //     return 0;
